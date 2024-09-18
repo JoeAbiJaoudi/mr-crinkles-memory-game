@@ -45,6 +45,21 @@ h1 {
     margin-top: 15px;
 }
 
+#points-container {
+    position: relative;
+    top: 0;
+    right: 0;
+    padding: 10px;
+    background-color: #fff;
+    border: 2px solid #333;
+    border-radius: 10px;
+}
+
+#points-container p {
+    font-size: 20px;
+    font-weight: bold;
+}
+
 /* Media query for smaller screens */
 @media (max-width: 800px) {
     #game-board {

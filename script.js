@@ -14,6 +14,7 @@ const images = [
 
 let flippedCards = [];
 let matchedPairs = 0;
+let points = 0;
 const totalPairs = images.length / 2; // Total number of pairs in the game
 
 // Shuffle the images array
@@ -22,6 +23,11 @@ function shuffle(array) {
         const j = Math.floor(Math.random() * (i + 1));
         [array[i], array[j]] = [array[j], array[i]];
     }
+}
+
+function updatePoints() {
+    points += 10; // Add 10 points for each match
+    document.getElementById('points').textContent = points;
 }
 
 // Initialize the game board
@@ -78,6 +84,8 @@ function checkForMatch() {
         matchedPairs++;
         document.getElementById('message').textContent = "It's a match! Keep going!";
 
+        updatePoints();
+
         setTimeout(() => {
             card1.style.display = 'none';
             card2.style.display = 'none';
@@ -87,6 +95,7 @@ function checkForMatch() {
         // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
             document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
+            
         }
         
         flippedCards = [];
