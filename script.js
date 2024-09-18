@@ -9,6 +9,7 @@ const images = [
     'CrinklePhotos/crinkles7.png', 'CrinklePhotos/crinkles7.png',
     'CrinklePhotos/crinkles8.png', 'CrinklePhotos/crinkles8.png',
     'CrinklePhotos/crinkles9.png', 'CrinklePhotos/crinkles9.png',
+    'CrinklePhotos/crinkles10.png', 'CrinklePhotos/crinkles10.png'
 ]; // List of pairs of images
 
 let flippedCards = [];
@@ -77,19 +78,28 @@ function checkForMatch() {
         matchedPairs++;
         document.getElementById('message').textContent = "It's a match! Keep going!";
 
+        setTimeout(() => {
+            card1.style.display = 'none';
+            card2.style.display = 'none';
+        }, 500);
+
+
+        // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
             document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
         }
-
+        
         flippedCards = [];
     } else {
+        // Delay flipping back the unmatched cards
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
             flippedCards = [];
-        }, 1000);
+        }, 500);
     }
 }
+
 
 // Initialize the game
 initializeGameBoard();
