@@ -108,8 +108,8 @@ function checkForMatch() {
         // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
             document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
-            document.getElementById('start-game-container').style.display = 'block'; 
-            document.getElementById('crinkles_head').style.display = 'inline'; //Show crinkles
+            document.getElementById('start-game-container').style.display = 'inline'; 
+            document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
             clearInterval(timerInterval); // Stop the timer on win
         }
 
@@ -135,7 +135,7 @@ function startTimer(duration) {
         if (sec < 0) {
             clearInterval(timerInterval);
             document.getElementById('timer').innerHTML = "Time's up!";
-            document.getElementById('start-game-container').style.display = 'inline'; 
+            document.getElementById('start-game-container').style.display = 'block'; 
             showTimeUpScreen(); // Show the "time up" screen
         }
     }, 1000); // 1 second interval

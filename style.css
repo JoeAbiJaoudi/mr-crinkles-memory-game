@@ -102,8 +102,9 @@ h1 {
 .crinkles-head {
     height: 70%;
     width: 70%;
+    max-width: 300px; /* Limit the max width of the image */
+    margin: 0 auto;
 }
-
 
 /* Responsive Adjustments for Tablets */
 @media (max-width: 768px) {
@@ -133,6 +134,14 @@ h1 {
     .card {
         width: 100px;
         height: 100px; /* Adjust card size for smaller screens */
+    }
+
+    .crinkles-head {
+        max-width: 250px; /* Limit image size for tablets */
+    }
+
+    .item-c img {
+        max-height: 250px; /* Adjust image size for tablets */
     }
 }
 
@@ -164,6 +173,11 @@ h1 {
     .card {
         width: 80px;
         height: 80px; /* Adjust card size for mobile */
+    }
+
+    .crinkles-head {
+        max-width: 200px; /* Further limit the image size for mobile */
+        height: auto;
     }
 
     .item-c img {
