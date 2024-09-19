@@ -42,6 +42,9 @@ function initializeGameBoard(difficulty) {
     document.getElementById('game-board').style.display = 'grid'; // Show the game board
     document.getElementById('start-game-container').style.display = 'none'; // Hide start game
     document.getElementById('winning-message').style.display = "none";
+    document.getElementById('crinkles_head').style.display = 'none'; //Hide crinkles
+
+    
 
     // Set the number of pairs based on the difficulty
     if (difficulty === 'easy') {
@@ -145,7 +148,7 @@ function startTimer(duration) {
 // Show time-up image and "Try Again" button
 function showTimeUpScreen() {
     document.getElementById('game-board').style.display = 'none'; // Hide the game board
-    document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
+    document.getElementById('crinkles_head').style.display = 'flex'; //Show crinkles
     document.getElementById('winning-message').textContent = "Time ran out! Select start game to try again!";
     document.getElementById('winning-message').style.display = "block";
     document.getElementById('winning-message').style.color = "red";
