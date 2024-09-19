@@ -147,7 +147,7 @@ function showTimeUpScreen() {
     document.getElementById('game-board').style.display = 'none'; // Hide the game board
     document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
     document.getElementById('winning-message').textContent = "Time ran out! Select start game to try again!";
-    document.getElementById('winning-message').style.display = "block";
+    document.getElementById('winning-message').style.display = "flex";
     document.getElementById('winning-message').style.color = "red";
 }
 
