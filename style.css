@@ -203,6 +203,24 @@ h1 {
     .item-c img {
         max-height: 250px; /* Adjust image size for tablets */
     }
+    #start-game-container {
+        padding: 20px;
+        max-width: 70%; /* Slightly wider container for tablet screens */
+    }
+
+    #start-game-container p {
+        font-size: 17px; /* Slightly reduce font size */
+    }
+
+    #difficulty-select {
+        font-size: 15px; /* Adjust font size for tablets */
+        padding: 10px; /* Keep adequate padding for easier selection on tablets */
+    }
+
+    #start-game {
+        padding: 10px 20px; /* Maintain a good size for the button */
+        font-size: 15px; /* Slightly smaller text for tablets */
+    }
 }
 
 /* Responsive Adjustments for Mobile Phones */
@@ -242,5 +260,24 @@ h1 {
 
     .item-c img {
         max-height: 200px; /* Reduce image size on mobile */
+    }
+
+    #start-game-container {
+        padding: 15px;
+        max-width: 90%; /* Make the container wider on mobile */
+    }
+
+    #start-game-container p {
+        font-size: 16px; /* Reduce the font size for mobile */
+    }
+
+    #difficulty-select {
+        font-size: 14px; /* Reduce the font size for mobile */
+        padding: 8px; /* Smaller padding for mobile */
+    }
+
+    #start-game {
+        padding: 8px 16px; /* Adjust button size for mobile */
+        font-size: 14px; /* Adjust font size for mobile */
     }
 }

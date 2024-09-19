@@ -136,7 +136,7 @@ function startTimer(duration) {
         if (sec < 0) {
             clearInterval(timerInterval);
             document.getElementById('timer').innerHTML = "Time's up!";
-            document.getElementById('start-game-container').style.display = 'inline'; 
+            document.getElementById('start-game-container').style.display = 'flex'; 
             showTimeUpScreen(); // Show the "time up" screen
         }
     }, 1000); // 1 second interval
@@ -147,7 +147,7 @@ function showTimeUpScreen() {
     document.getElementById('game-board').style.display = 'none'; // Hide the game board
     document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
     document.getElementById('winning-message').textContent = "Time ran out! Select start game to try again!";
-    document.getElementById('winning-message').style.display = "flex";
+    document.getElementById('winning-message').style.display = "block";
     document.getElementById('winning-message').style.color = "red";
 }
 
