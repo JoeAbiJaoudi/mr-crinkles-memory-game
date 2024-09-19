@@ -40,8 +40,9 @@ function initializeGameBoard(difficulty) {
     document.getElementById('points').textContent = points;
     document.getElementById('game-board').innerHTML = ''; // Clear the game board
     document.getElementById('game-board').style.display = 'grid'; // Show the game board
-    document.getElementById('crinkles_head').style.display = 'none'; // Hide the game board
-    document.getElementById('start-game-container').style.display = 'none'; //Hid the start game
+    document.getElementById('crinkles_head').style.display = 'none'; // Hide Crinkles head
+    document.getElementById('start-game-container').style.display = 'none'; // Hide start game
+    document.getElementById('winning-message').style.display = "none";
 
     // Set the number of pairs based on the difficulty
     if (difficulty === 'easy') {
@@ -101,15 +102,16 @@ function checkForMatch() {
             document.getElementById('message').textContent = " ";
         }, 2000);
         updatePoints();
-        setTimeout(() => {
-            card1.style.display = 'none';
-            card2.style.display = 'none';
-        }, 500);
+
+        // Keep the cards face up without hiding them
+        card1.classList.add('matched');
+        card2.classList.add('matched');
+
         // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
-            document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
+            document.getElementById('winning-message').textContent = "Congratulations! You've matched all the pairs!";
+            document.getElementById('winning-message').style.display = "block";
             document.getElementById('start-game-container').style.display = 'inline'; 
-            document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
             clearInterval(timerInterval); // Stop the timer on win
         }
 
@@ -145,6 +147,9 @@ function startTimer(duration) {
 function showTimeUpScreen() {
     document.getElementById('game-board').style.display = 'none'; // Hide the game board
     document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
+    document.getElementById('winning-message').textContent = "Time ran out! Select start game to try again!";
+    document.getElementById('winning-message').style.display = "block";
+    document.getElementById('winning-message').style.color = "red";
 }
 
 // Start the game when the player selects a difficulty
