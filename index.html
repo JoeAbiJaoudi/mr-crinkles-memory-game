@@ -9,22 +9,32 @@
 <body>
     <h1>Mr. Crinkles Memory Game</h1>
     <p>Find all the matching pairs of Mr. Crinkles!</p>
-
+    <p>Select Difficulty:</p>
+    <select id="difficulty-select">
+        <option value="easy">Easy (6 pairs, 60s)</option>
+        <option value="medium">Medium (12 pairs, 90s)</option>
+        <option value="hard">Hard (20 pairs, 120s)</option>
+    </select>
+    <button id="start-game">Start Game</button>
     <div id="game-container">
         <div class="item-a">
             <div id="points-container">
                 <p>Points: <span id="points">0</span></p>
+                <div>
+                    <p>Timer: <span id="timer"></span></p>
+                    </div>
             </div>
         </div>
         <div class="item-b">
             <div id="game-board"></div>
+            <img id="time-up-image" src="CrinklePhotos/crinkles_head.png" alt="Time's Up!" style="display: none;"/>
+            <button id="restart-game" style="display: none;">Try Again</button>
         </div>
         <div class="item-c">
                 <img src="CrinklePhotos/cartooncrinkles.png"></img>
-                <p id="message"></p>
+                      <p id="message"></p>
         </div>
     </div>
-
     <!-- JavaScript -->
     <script src="script.js"></script>
 </body>

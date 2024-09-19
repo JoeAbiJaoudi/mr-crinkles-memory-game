@@ -1,5 +1,5 @@
 // Game variables
-const images = [
+const allImages = [
     'CrinklePhotos/crinkles1.png', 'CrinklePhotos/crinkles1.png',
     'CrinklePhotos/crinkles2.png', 'CrinklePhotos/crinkles2.png',
     'CrinklePhotos/crinkles3.png', 'CrinklePhotos/crinkles3.png',
@@ -9,13 +9,16 @@ const images = [
     'CrinklePhotos/crinkles7.png', 'CrinklePhotos/crinkles7.png',
     'CrinklePhotos/crinkles8.png', 'CrinklePhotos/crinkles8.png',
     'CrinklePhotos/crinkles9.png', 'CrinklePhotos/crinkles9.png',
-    'CrinklePhotos/crinkles10.png', 'CrinklePhotos/crinkles10.png'
-]; // List of pairs of images
+    'CrinklePhotos/crinkles10.png', 'CrinklePhotos/crinkles10.png',
+    'CrinklePhotos/crinkles11.png', 'CrinklePhotos/crinkles11.png'
+]; // All available pairs
 
 let flippedCards = [];
 let matchedPairs = 0;
 let points = 0;
-const totalPairs = images.length / 2; // Total number of pairs in the game
+let totalPairs;
+let selectedImages = [];
+let timerInterval;
 
 // Shuffle the images array
 function shuffle(array) {
@@ -30,30 +33,38 @@ function updatePoints() {
     document.getElementById('points').textContent = points;
 }
 
-// Initialize the game board
-function initializeGameBoard() {
-    shuffle(images); // Shuffle the images
+// Initialize the game board based on difficulty
+function initializeGameBoard(difficulty) {
+    matchedPairs = 0;
+    points = 0;
+    document.getElementById('points').textContent = points;
+    document.getElementById('game-board').innerHTML = ''; // Clear the game board
+
+    // Set the number of pairs based on the difficulty
+    if (difficulty === 'easy') {
+        selectedImages = allImages.slice(0, 12); // 6 pairs (12 cards)
+    } else if (difficulty === 'medium') {
+        selectedImages = allImages.slice(0, 24); // 12 pairs (24 cards)
+    } else if (difficulty === 'hard') {
+        selectedImages = allImages.slice(0); // 20 pairs (40 cards)
+    }
+
+    totalPairs = selectedImages.length / 2; // Set total pairs
+    shuffle(selectedImages); // Shuffle the images
+
     const gameBoard = document.getElementById('game-board');
 
-    // Create card elements
-    images.forEach((image, index) => {
+    // Create card elements based on the selected difficulty
+    selectedImages.forEach((image, index) => {
         const card = document.createElement('div');
         card.classList.add('card');
         card.dataset.index = index;
 
         const img = document.createElement('img');
         img.src = `${image}`;
-        console.log(`image src`, img.src);
         img.alt = `Mr. Crinkles ${index}`;
 
-        // Add error handling for image loading
-        img.onerror = function () {
-        console.error(`Failed to load image: ${img.src}`);
-        document.getElementById('message').textContent = `Error: Could not load image for card ${index}. Check the file path and try again.`;
-        };
-
         card.appendChild(img);
-
         card.addEventListener('click', handleCardClick);
         gameBoard.appendChild(card);
     });
@@ -83,24 +94,25 @@ function checkForMatch() {
     if (img1 === img2) {
         matchedPairs++;
         document.getElementById('message').textContent = "It's a match! Keep going!";
-
+        setTimeout(() => {
+            document.getElementById('message').textContent = " ";
+        }, 2000);
         updatePoints();
-
         setTimeout(() => {
             card1.style.display = 'none';
             card2.style.display = 'none';
         }, 500);
-
-
         // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
             document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
-            
+            setTimeout(() => {
+                document.getElementById('message').textContent = " ";
+            }, 2000);
+            clearInterval(timerInterval); // Stop the timer on win
         }
-        
+
         flippedCards = [];
     } else {
-        // Delay flipping back the unmatched cards
         setTimeout(() => {
             card1.classList.remove('flipped');
             card2.classList.remove('flipped');
@@ -109,6 +121,60 @@ function checkForMatch() {
     }
 }
 
+// Start the timer and handle timeout
+function startTimer(duration) {
+    var sec = duration; // Set the timer duration
+    document.getElementById('timer').innerHTML = '00:' + sec;
 
-// Initialize the game
-initializeGameBoard();
+    timerInterval = setInterval(function() {
+        document.getElementById('timer').innerHTML = '00:' + (sec < 10 ? '0' + sec : sec);
+        sec--;
+
+        if (sec < 0) {
+            clearInterval(timerInterval);
+            document.getElementById('timer').innerHTML = "Time's up!";
+            showTimeUpScreen(); // Show the "time up" screen
+        }
+    }, 1000); // 1 second interval
+}
+
+// Show time-up image and "Try Again" button
+function showTimeUpScreen() {
+    document.getElementById('game-board').style.display = 'none'; // Hide the game board
+    document.getElementById('time-up-image').style.display = 'block'; // Show the time-up image
+    document.getElementById('restart-game').style.display = 'block'; // Show "Try Again" button
+}
+
+// Restart the game when "Try Again" is clicked
+document.getElementById('restart-game').addEventListener('click', function() {
+    document.getElementById('game-board').style.display = 'block'; // Show the game board
+    document.getElementById('time-up-image').style.display = 'none'; // Hide the time-up image
+    document.getElementById('restart-game').style.display = 'none'; // Hide the button
+
+    const difficulty = document.getElementById('difficulty-select').value;
+    initializeGameBoard(difficulty);
+
+    // Reset and start the timer based on difficulty
+    if (difficulty === 'easy') {
+        startTimer(60);
+    } else if (difficulty === 'medium') {
+        startTimer(90);
+    } else if (difficulty === 'hard') {
+        startTimer(120);
+    }
+});
+
+// Start the game when the player selects a difficulty
+document.getElementById('start-game').addEventListener('click', function() {
+    const difficulty = document.getElementById('difficulty-select').value;
+    initializeGameBoard(difficulty);
+
+    // Set the timer dynamically based on difficulty
+    if (difficulty === 'easy') {
+        startTimer(60);
+    } else if (difficulty === 'medium') {
+        startTimer(90);
+    } else if (difficulty === 'hard') {
+        startTimer(120);
+    }
+});
