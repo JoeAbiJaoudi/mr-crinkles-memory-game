@@ -99,6 +99,12 @@ h1 {
     margin: 0 auto; /* Center the image */
 }
 
+.crinkles-head {
+    height: 70%;
+    width: 70%;
+}
+
+
 /* Responsive Adjustments for Tablets */
 @media (max-width: 768px) {
     #game-container {

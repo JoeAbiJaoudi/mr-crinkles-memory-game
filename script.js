@@ -39,6 +39,9 @@ function initializeGameBoard(difficulty) {
     points = 0;
     document.getElementById('points').textContent = points;
     document.getElementById('game-board').innerHTML = ''; // Clear the game board
+    document.getElementById('game-board').style.display = 'grid'; // Show the game board
+    document.getElementById('crinkles_head').style.display = 'none'; // Hide the game board
+    document.getElementById('start-game-container').style.display = 'none'; //Hid the start game
 
     // Set the number of pairs based on the difficulty
     if (difficulty === 'easy') {
@@ -105,9 +108,8 @@ function checkForMatch() {
         // Check if all pairs have been matched
         if (matchedPairs === totalPairs) {
             document.getElementById('message').textContent = "Congratulations! You've matched all the pairs!";
-            setTimeout(() => {
-                document.getElementById('message').textContent = " ";
-            }, 2000);
+            document.getElementById('start-game-container').style.display = 'block'; 
+            document.getElementById('crinkles_head').style.display = 'inline'; //Show crinkles
             clearInterval(timerInterval); // Stop the timer on win
         }
 
@@ -133,6 +135,7 @@ function startTimer(duration) {
         if (sec < 0) {
             clearInterval(timerInterval);
             document.getElementById('timer').innerHTML = "Time's up!";
+            document.getElementById('start-game-container').style.display = 'inline'; 
             showTimeUpScreen(); // Show the "time up" screen
         }
     }, 1000); // 1 second interval
@@ -141,34 +144,13 @@ function startTimer(duration) {
 // Show time-up image and "Try Again" button
 function showTimeUpScreen() {
     document.getElementById('game-board').style.display = 'none'; // Hide the game board
-    document.getElementById('time-up-image').style.display = 'block'; // Show the time-up image
-    document.getElementById('restart-game').style.display = 'block'; // Show "Try Again" button
+    document.getElementById('crinkles_head').style.display = 'block'; //Show crinkles
 }
-
-// Restart the game when "Try Again" is clicked
-document.getElementById('restart-game').addEventListener('click', function() {
-    document.getElementById('game-board').style.display = 'block'; // Show the game board
-    document.getElementById('time-up-image').style.display = 'none'; // Hide the time-up image
-    document.getElementById('restart-game').style.display = 'none'; // Hide the button
-
-    const difficulty = document.getElementById('difficulty-select').value;
-    initializeGameBoard(difficulty);
-
-    // Reset and start the timer based on difficulty
-    if (difficulty === 'easy') {
-        startTimer(60);
-    } else if (difficulty === 'medium') {
-        startTimer(90);
-    } else if (difficulty === 'hard') {
-        startTimer(120);
-    }
-});
 
 // Start the game when the player selects a difficulty
 document.getElementById('start-game').addEventListener('click', function() {
     const difficulty = document.getElementById('difficulty-select').value;
     initializeGameBoard(difficulty);
-
     // Set the timer dynamically based on difficulty
     if (difficulty === 'easy') {
         startTimer(60);
