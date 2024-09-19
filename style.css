@@ -79,6 +79,28 @@ h1 {
     text-align: center; /* Centers the message text */
 }
 
+.item-c img {
+    max-width: 100%; /* Image is responsive */
+    max-height: 300px; /* Maximum height is 300px */
+    width: auto;
+    height: auto;
+    display: block; /* Ensure it's block */
+    margin: 0 auto; /* Center the image */
+}
+
+/* Responsive Crinkles Images */
+.crinkles-head, .item-c img {
+    max-width: 100%; /* Responsive width */
+    height: auto; /* Maintain aspect ratio */
+    display: block;
+    margin: 0 auto;
+}
+
+.crinkles-head {
+    height: 70%;
+    width: 70%;
+}
+
 /* Responsive Adjustments for Tablets */
 @media (max-width: 768px) {
     #game-board {
@@ -93,6 +115,12 @@ h1 {
 
     #message {
         font-size: 14px; /* Slightly smaller message text */
+    }
+
+    /* Adjust the Crinkles head and cartoon images for tablets */
+    .crinkles-head, .item-c img {
+        max-width: 80%;
+        max-height: 250px; /* Limit height */
     }
 }
 
@@ -110,5 +138,11 @@ h1 {
 
     #message {
         font-size: 12px; /* Adjust message font size */
+    }
+
+    /* Adjust the Crinkles head and cartoon images for mobile */
+    .crinkles-head, .item-c img {
+        max-width: 70%;
+        max-height: 200px; /* Limit height on mobile */
     }
 }
