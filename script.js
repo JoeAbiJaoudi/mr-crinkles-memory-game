@@ -40,7 +40,6 @@ function initializeGameBoard(difficulty) {
     document.getElementById('points').textContent = points;
     document.getElementById('game-board').innerHTML = ''; // Clear the game board
     document.getElementById('game-board').style.display = 'grid'; // Show the game board
-    document.getElementById('crinkles_head').style.display = 'none'; // Hide Crinkles head
     document.getElementById('start-game-container').style.display = 'none'; // Hide start game
     document.getElementById('winning-message').style.display = "none";
 
@@ -111,7 +110,7 @@ function checkForMatch() {
         if (matchedPairs === totalPairs) {
             document.getElementById('winning-message').textContent = "Congratulations! You've matched all the pairs!";
             document.getElementById('winning-message').style.display = "block";
-            document.getElementById('start-game-container').style.display = 'inline'; 
+            document.getElementById('start-game-container').style.display = 'flex'; 
             clearInterval(timerInterval); // Stop the timer on win
         }
 
@@ -137,7 +136,7 @@ function startTimer(duration) {
         if (sec < 0) {
             clearInterval(timerInterval);
             document.getElementById('timer').innerHTML = "Time's up!";
-            document.getElementById('start-game-container').style.display = 'block'; 
+            document.getElementById('start-game-container').style.display = 'inline'; 
             showTimeUpScreen(); // Show the "time up" screen
         }
     }, 1000); // 1 second interval

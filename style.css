@@ -1,4 +1,54 @@
 /* Base Styles for Desktop and Larger Screens */
+#start-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+#start-game-container p {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+#difficulty-select {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    width: 100%;
+}
+
+#difficulty-select option {
+    padding: 5px;
+}
+
+#start-game {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff4081;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#start-game:hover {
+    background-color: #ff5a93;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     text-align: center;
@@ -59,6 +109,7 @@ h1 {
     grid-gap: 15px;
     justify-content: center;
     max-width: 100%;
+    margin-top: 20px;
 }
 
 .card {
@@ -112,6 +163,7 @@ h1 {
     width: 70%;
     max-width: 300px; /* Limit the max width of the image */
     margin: 0 auto;
+    display: none;
 }
 
 /* Responsive Adjustments for Tablets */
